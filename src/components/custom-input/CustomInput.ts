@@ -126,7 +126,7 @@ export class CustomInput extends LitElement {
     this.value = target.value;
 
     this.dispatchEvent(
-      new CustomEvent('input-change', {
+      new CustomEvent('value-change', {
         detail: { value: this.value, name: this.name },
         bubbles: true,
         composed: true
