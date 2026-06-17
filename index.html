@@ -1,16 +1,45 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>persianui</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.ts"></script>
-  </head>
-  <body>
-    <my-element>
-      <h1>Get started</h1>
-    </my-element>
-  </body>
+    <title>PersianUI - Test</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9fafb;
+        }
+        h1 {
+            color: #111827;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 تست کتابخانه PersianUI</h1>
+    
+    <custom-input 
+        label="نام کاربری"
+        name="username"
+        placeholder="نام کاربری خود را وارد کنید">
+    </custom-input>
+
+    <custom-input 
+        label="رمز عبور"
+        type="password"
+        name="password">
+    </custom-input>
+
+    <custom-input 
+        label="فیلد فقط خواندنی"
+        value="این مقدار قابل تغییر نیست"
+        readonly>
+    </custom-input>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
 </html>
