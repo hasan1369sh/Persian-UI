@@ -3,7 +3,9 @@ import { customElement, property } from 'lit/decorators.js';
 
 @customElement('custom-button')
 export class CustomButton extends LitElement {
-  @property({ type: String }) label = ''; // ← اضافه شد
+  @property({ type: String }) label = '';
+  @property({ type: String }) icon = '';
+  @property({ type: String }) iconPosition: 'left' | 'right' = 'right';
   @property({ type: String }) variant: 'primary' | 'secondary' | 'danger' | 'success' | 'ghost' | 'outline' = 'primary';
   @property({ type: String }) size: 'small' | 'medium' | 'large' = 'medium';
   @property({ type: Boolean }) disabled = false;
@@ -132,36 +134,48 @@ export class CustomButton extends LitElement {
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
     }
-
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.2em;
+      line-height: 1;
+    }
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
   `;
 
   render() {
-    const classes = [
-      this.variant,
-      this.size,
-      this.fullWidth ? 'full-width' : '',
-      this.loading ? 'loading' : ''
-    ].filter(Boolean).join(' ');
+  console.log(' iconPosition:', this.iconPosition, 'icon:', this.icon);
+  const classes = [
+    this.variant,
+    this.size,
+    this.fullWidth ? 'full-width' : '',
+    this.loading ? 'loading' : ''
+  ].filter(Boolean).join(' ');
 
-    return html`
-      <button
-        class=${classes}
-        type=${this.type}
-        ?disabled=${this.disabled || this.loading}
-        @click=${this._handleClick}
-      >
-        <span class="loading-content">
-          <span class="spinner"></span>
-        </span>
-        <span class="default-content">
-          ${this.label ? this.label : html`<slot></slot>`}
-        </span>
-      </button>
-    `;
-  }
+  return html`
+    <button
+      class=${classes}
+      type=${this.type}
+      ?disabled=${this.disabled || this.loading}
+      @click=${this._handleClick}
+    >
+      <span class="loading-content">
+        <span class="spinner"></span>
+      </span>
+      <span class="default-content">
+        ${this.icon && this.iconPosition === 'right' 
+          ? html`<span class="icon">${this.icon}</span>` 
+          : ''}
+        ${this.label ? this.label : html`<slot></slot>`}
+        ${this.icon && this.iconPosition === 'left' 
+          ? html`<span class="icon">${this.icon}</span>` 
+          : ''}
+      </span>
+    </button>
+  `;
+}
 
   private _handleClick(event: MouseEvent) {
     if (this.disabled || this.loading) {
