@@ -23,10 +23,6 @@ const meta: Meta = {
       options: ['button', 'submit', 'reset']
     },
     icon: { control: 'text' },
-    iconPosition: {
-      control: 'select',
-      options: ['left', 'right']
-    }
   },
   args: {
     variant: 'primary',
@@ -35,8 +31,7 @@ const meta: Meta = {
     loading: false,
     fullWidth: false,
     type: 'button',
-    icon: '',
-    iconPosition: 'right'
+    icon: ''
   }
 };
 
@@ -52,7 +47,6 @@ const Template = (args: any) => html`
     ?full-width="${args.fullWidth}"
     type="${args.type}"
     icon="${args.icon}"
-    icon-position="${args.iconPosition}"
     @button-click="${(e: any) => console.log('🔘 Button clicked:', e.detail)}"
   >
     ${args.loading ? '' : 'کلیک کنید'}
@@ -119,8 +113,7 @@ export const FullWidth: Story = {
 export const WithIcon: Story = {
   ...Default,
   args: { 
-    icon: '🔍',
-    iconPosition: 'right'
+    icon: '🔍'
   }
 };
 
